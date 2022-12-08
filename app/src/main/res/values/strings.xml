@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BankMisrTask</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="currency_convert_text">Convert Currency</string>
+    <string name="details_text">Details</string>
+    <string name="from_text">From</string>
+    <string name="to_text">To</string>
+</resources>
