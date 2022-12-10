@@ -31,7 +31,7 @@ open class BaseFragment : Fragment() {
 
     fun showToast(message: String) {
         hideLoading()
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
     }
 
     fun handleLoading(isLoading: Boolean) {

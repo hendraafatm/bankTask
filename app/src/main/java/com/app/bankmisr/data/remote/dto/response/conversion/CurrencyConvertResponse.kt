@@ -1,4 +1,4 @@
-package com.app.bankmisr.data.remote.dto.response
+package com.app.bankmisr.data.remote.dto.response.conversion
 
 import com.app.bankmisr.data.common.utils.BaseResponse
 import com.app.bankmisr.domain.entity.Info

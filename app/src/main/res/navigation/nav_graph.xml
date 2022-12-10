@@ -12,14 +12,25 @@
         tools:layout="@layout/fragment_currency_convert">
 
         <action
-            android:id="@+id/action_CurrencyConvertFragment_to_SecondFragment"
+            android:id="@+id/action_CurrencyConvertFragment_to_DetailsFragment"
             app:destination="@id/DetailsFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/DetailsFragment"
         android:name="com.app.bankmisr.presentation.details.DetailsFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details">
+
+        <argument
+            android:name="base"
+            app:argType="string" />
+
+        <argument
+            android:name="symbols"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

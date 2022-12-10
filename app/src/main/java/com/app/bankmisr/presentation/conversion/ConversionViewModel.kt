@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.app.bankmisr.data.common.utils.DataState
-import com.app.bankmisr.data.remote.dto.response.CurrencyConvertResponse
 import com.app.bankmisr.domain.usecases.ConversionUseCase
+import com.app.bankmisr.domain.usecases.GetSymbolsUseCase
 import com.app.bankmisr.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,13 +13,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ConversionViewModel @Inject constructor(
-    private val useCase: ConversionUseCase
+    private val conversionUseCase: ConversionUseCase,
+    private val symbolsUseCase: GetSymbolsUseCase
 ) : BaseViewModel() {
 
-    private var _currencyConvertResponse: MutableLiveData<CurrencyConvertResponse> =
+    private val _currencyConvertResultLiveData: MutableLiveData<Double> =
         MutableLiveData()
-    val currencyConvertResponse: LiveData<CurrencyConvertResponse>
-        get() = _currencyConvertResponse
+    val currencyConvertResultLiveData: LiveData<Double>
+        get() = _currencyConvertResultLiveData
+
+    private val _symbolsLiveData: MutableLiveData<List<String>> =
+        MutableLiveData()
+    val symbolsLiveData: LiveData<List<String>>
+        get() = _symbolsLiveData
+
+    init {
+        fetchSymbols()
+    }
 
     fun currencyConvert(
         to: String,
@@ -27,7 +37,28 @@ class ConversionViewModel @Inject constructor(
         amount: Double
     ) = viewModelScope.launch {
         showLoading.value = true
-        useCase.execute(ConversionUseCase.Params(to = to, from= from, amount = amount)).collect { response ->
+        conversionUseCase.execute(ConversionUseCase.Params(to = to, from = from, amount = amount))
+            .collect { response ->
+                showLoading.value = false
+                when (response) {
+                    is DataState.GenericError -> {
+                        response.error?.error?.errorMessage.let { err ->
+                            showError.value = err
+                        }
+                    }
+                    is DataState.Success -> {
+                        response.value?.let { result ->
+                            _currencyConvertResultLiveData.value = result.result ?: 0.0
+                        }
+                    }
+                }
+            }
+    }
+
+    private fun fetchSymbols(
+    ) = viewModelScope.launch {
+        showLoading.value = true
+        symbolsUseCase.execute(GetSymbolsUseCase.Params()).collect { response ->
             showLoading.value = false
             when (response) {
                 is DataState.GenericError -> {
@@ -37,7 +68,9 @@ class ConversionViewModel @Inject constructor(
                 }
                 is DataState.Success -> {
                     response.value?.let { result ->
-                        _currencyConvertResponse.value = result
+                        result.symbols?.keys?.toList()?.let {
+                            _symbolsLiveData.value = it
+                        }
                     }
                 }
             }

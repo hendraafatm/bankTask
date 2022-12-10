@@ -6,4 +6,8 @@
     <string name="details_text">Details</string>
     <string name="from_text">From</string>
     <string name="to_text">To</string>
+    <string name="currency_history">Currency History</string>
+    <string name="select_currencies">Please select the currency from and to before you proceed</string>
+    <string name="invalid_num">Invalid Number</string>
+    <string name="select_different_currencies">Please select different currencies</string>
 </resources>

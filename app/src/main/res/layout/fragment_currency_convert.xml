@@ -5,59 +5,49 @@
     android:background="@color/gray"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/fromTv"
+    <Spinner
+        android:id="@+id/fromSpinner"
         android:layout_width="@dimen/dim80"
         android:layout_height="@dimen/dim30"
         android:fontFamily="@font/public_sans_semi_bold"
         android:text="@string/from_text"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/dim30"
-        android:paddingStart="@dimen/dim12"
-        android:paddingEnd="@dimen/dim12"
-        android:paddingBottom="@dimen/dim8"
-        android:paddingTop="@dimen/dim8"
         android:background="@drawable/border_pink_gray"
         app:layout_constraintStart_toStartOf="parent"
        android:layout_marginStart="@dimen/dim50"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="@dimen/dim12"
+
         android:textStyle="bold" />
-    <TextView
-        android:id="@+id/toTv"
+
+    <Spinner
+        android:id="@+id/toSpinner"
         android:layout_width="@dimen/dim80"
         android:layout_height="@dimen/dim30"
         android:fontFamily="@font/public_sans_semi_bold"
         android:text="@string/to_text"
         android:layout_marginTop="@dimen/dim30"
         android:textColor="@color/black"
-        android:paddingStart="@dimen/dim12"
-        android:paddingEnd="@dimen/dim12"
         android:layout_marginEnd="@dimen/dim50"
-        android:paddingBottom="@dimen/dim8"
-        android:paddingTop="@dimen/dim8"
         android:background="@drawable/border_pink_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="@dimen/dim12"
         android:textStyle="bold" />
+
     <ImageView
-        android:id="@+id/changeTv"
+        android:id="@+id/tvSwitch"
         android:layout_width="@dimen/dim30"
         android:layout_height="@dimen/dim30"
         android:layout_marginTop="@dimen/dim30"
-        android:paddingStart="@dimen/dim12"
-        android:paddingEnd="@dimen/dim12"
-        android:paddingBottom="@dimen/dim8"
         android:src="@drawable/ic_change"
-        android:paddingTop="@dimen/dim8"
-        android:scaleType="centerCrop"
         android:background="@drawable/border_pink_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/amountBeforeTv"
+
+    <EditText
+        android:id="@+id/etAmountBefore"
         android:layout_width="@dimen/dim80"
         android:layout_height="@dimen/dim30"
         android:fontFamily="@font/public_sans_semi_bold"
@@ -70,10 +60,13 @@
         android:background="@drawable/border_black_gray"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/dim50"
-        app:layout_constraintTop_toBottomOf="@id/toTv"
+        app:layout_constraintTop_toBottomOf="@id/toSpinner"
         android:textSize="@dimen/dim12"
+        android:inputType="number"
         android:textStyle="bold" />
+
     <TextView
+        android:id="@+id/tvAmountAfter"
         android:layout_width="@dimen/dim80"
         android:layout_height="@dimen/dim30"
         android:fontFamily="@font/public_sans_semi_bold"
@@ -86,20 +79,18 @@
         android:paddingTop="@dimen/dim8"
         android:background="@drawable/border_black_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fromTv"
-        android:textSize="@dimen/dim12"
+        app:layout_constraintTop_toBottomOf="@id/fromSpinner"
+        android:textSize="@dimen/dim11sp"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-
+    <Button
+        android:id="@+id/btnDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim62"
         android:layout_marginEnd="@dimen/dim62"
         android:layout_marginBottom="@dimen/dim67"
         android:background="@drawable/border_black_gray"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:fontFamily="@font/sui_gen_bold"
         android:gravity="center"
         android:paddingTop="@dimen/dim14"
@@ -107,8 +98,8 @@
         android:text="@string/details_text"
         android:layout_marginTop="@dimen/dim20"
         android:textColor="@color/black"
-        android:textSize="@dimen/dim_11sp"
-        app:layout_constraintTop_toBottomOf="@id/amountBeforeTv" />
+        android:textSize="@dimen/dim11sp"
+        app:layout_constraintTop_toBottomOf="@id/etAmountBefore" />
 
 
 
