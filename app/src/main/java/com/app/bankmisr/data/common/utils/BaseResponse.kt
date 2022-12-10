@@ -6,13 +6,6 @@ import java.io.Serializable
 open class BaseResponse(
     @SerializedName("success")
     val success: Boolean? = null,
-    @SerializedName("error")
-    val error: ErrorData? = null
+    @SerializedName("message")
+    val message: String? = null
 ) : Serializable
-
-data class ErrorData(
-    @SerializedName("code")
-    val code: Int? = null,
-    @SerializedName("info")
-    val errorMessage: String? = null
-)

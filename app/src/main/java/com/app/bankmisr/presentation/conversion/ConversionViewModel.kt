@@ -42,7 +42,7 @@ class ConversionViewModel @Inject constructor(
                 showLoading.value = false
                 when (response) {
                     is DataState.GenericError -> {
-                        response.error?.error?.errorMessage.let { err ->
+                        response.error?.message?.let { err ->
                             showError.value = err
                         }
                     }
@@ -62,7 +62,7 @@ class ConversionViewModel @Inject constructor(
             showLoading.value = false
             when (response) {
                 is DataState.GenericError -> {
-                    response.error?.error?.errorMessage.let { err ->
+                    response.error?.message?.let { err ->
                         showError.value = err
                     }
                 }

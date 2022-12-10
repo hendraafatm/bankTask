@@ -1,5 +1,6 @@
 package com.app.bankmisr.data.common.utils
 
+import com.app.bankmisr.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -13,7 +14,7 @@ class RequestInterceptor : Interceptor {
     }
 
     private fun setAuthHeader(builder: Request.Builder): Request.Builder {
-        builder.addHeader("apiKey", "HO2QvZxJ7U1uGHAW1oOrxtL2mJjSXBfd")
+        builder.addHeader("apiKey", BuildConfig.ApiKey)
         return builder
     }
 }

@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.app.bankmisr.data.common.utils.DataState
 import com.app.bankmisr.data.remote.dto.response.history.CurrencyHistoryResponse
 import com.app.bankmisr.domain.usecases.GetCurrencyHistoryUseCase
-import com.app.bankmisr.domain.usecases.GetSymbolsUseCase
 import com.app.bankmisr.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -34,7 +33,7 @@ class DetailsViewModel @Inject constructor(
                 showLoading.value = false
                 when (response) {
                     is DataState.GenericError -> {
-                        response.error?.error?.errorMessage.let { err ->
+                        response.error?.message?.let { err ->
                             showError.value = err
                         }
                     }

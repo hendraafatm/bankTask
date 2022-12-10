@@ -34,8 +34,8 @@ class CurrencyConvertFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewModel()
         initUI()
+        initViewModel()
     }
 
     private fun initViewModel() {
@@ -130,6 +130,9 @@ class CurrencyConvertFragment : BaseFragment() {
             ).show()
             return
         }
+
+        binding.etAmountBefore.text.clear()
+        binding.tvAmountAfter.text = null
 
         findNavController().navigate(
             CurrencyConvertFragmentDirections.actionCurrencyConvertFragmentToDetailsFragment(

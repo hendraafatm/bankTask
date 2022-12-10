@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/content_main.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_currency_convert.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/item_currency_history.xml" value="0.23106796116504855" />
         <entry key="app/src/main/res/layout/loading_dialog_layout.xml" value="0.17708333333333334" />
       </map>
     </option>

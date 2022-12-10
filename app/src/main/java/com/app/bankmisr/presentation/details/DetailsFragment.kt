@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.app.bankmisr.data.CurrencyHistory
 import com.app.bankmisr.databinding.FragmentDetailsBinding
 import com.app.bankmisr.utils.getCurrencyCustomList
 import com.app.bankmisr.utils.getDateAfterThreeDaysFormatted
@@ -42,7 +43,14 @@ class DetailsFragment : BaseFragment() {
     private fun initViewModel() {
         mViewModel.currencyHistoryLiveData.observe(viewLifecycleOwner) { historyRes ->
             val list = getCurrencyCustomList(historyRes)
-            Log.d("currencyHistory", list.toString())
+            onListReady(list)
+        }
+
+        mViewModel.showLoading.observe(viewLifecycleOwner) { show ->
+            handleLoading(show)
+        }
+        mViewModel.showError.observe(viewLifecycleOwner) { message ->
+            showToast(message)
         }
 
         mViewModel.getCurrencyHistory(
@@ -51,5 +59,11 @@ class DetailsFragment : BaseFragment() {
             getTodayDateFormatted(),
             getDateAfterThreeDaysFormatted()
         )
+    }
+
+    private fun onListReady(list: List<CurrencyHistory>) {
+        val adapter = CurrencyHistoryAdapter()
+        binding.rvHistory.adapter = adapter
+        adapter.submitList(list)
     }
 }

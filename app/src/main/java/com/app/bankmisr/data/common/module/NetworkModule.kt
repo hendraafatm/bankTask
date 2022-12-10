@@ -1,5 +1,6 @@
 package com.app.bankmisr.data.common.module
 
+import com.app.bankmisr.BuildConfig
 import com.app.bankmisr.data.common.utils.RequestInterceptor
 import com.app.bankmisr.data.remote.api.CurrencyApi
 import dagger.Module
@@ -23,7 +24,7 @@ object NetworkModule {
         return Retrofit.Builder().apply {
             addConverterFactory(GsonConverterFactory.create())
             client(okHttp)
-                .baseUrl("https://api.apilayer.com/fixer/")
+                .baseUrl(BuildConfig.BaseUrl)
         }.build()
     }
 
